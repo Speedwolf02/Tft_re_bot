@@ -32,8 +32,8 @@ class Config(object):
     START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/feb6dd0a1cb8576943c0f.jpg")
     
     FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', "").split(',')
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "" ))
-    DUMB_CHANNEL = int(os.environ.get("DUMB_CHANNEL", ""))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "0" ))
+    DUMB_CHANNEL = int(os.environ.get("DUMB_CHANNEL", "0"))
     
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
