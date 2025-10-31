@@ -33,7 +33,7 @@ class Config(object):
     
     FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', "").split(',')
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "0" ))
-    DUMB_CHANNEL = int(os.environ.get("DUMB_CHANNEL", "0"))
+    DUMB_CHANNEL = int(os.environ.get("DUMB_CHANNEL", ""))
     
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
