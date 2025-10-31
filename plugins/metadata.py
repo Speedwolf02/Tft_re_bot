@@ -52,7 +52,7 @@ async def handle_metadata(bot: Client, message: Message):
     await ms.delete()
 
     await message.reply_text(
-        f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
+        f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type:{} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
         reply_markup=generate_keyboard(bool_metadata, bool_queue),
     )
 
@@ -75,8 +75,23 @@ async def query_metadata(bot: Client, query: CallbackQuery):
         _bool = data.split("_")[1] == '1'
         await TFTBOTS.set_queue(query.from_user.id, bool_queue=not _bool)
         bool_queue = not _bool  # update after setting
+        
+    elif data == "setting_pg":
+        await query.message.edit(f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type:{} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
+        reply_markup=generate_keyboard(bool_metadata, bool_queue),
+    )
     elif data == "ftype":
-        await set_media_command(bot, query)
+        keyboard = InlineKeyboardMarkup([
+            [InlineKeyboardButton("ᴅᴏᴄᴜᴍᴇɴᴛ", callback_data="setmedia_document"),
+            InlineKeyboardButton("ᴠɪᴅᴇᴏ", callback_data="setmedia_video")],
+            [InlineKeyboardButton("⬅️ Back", callback_data="setting_pg")]
+        ])
+    
+        # Send a message with inline buttons
+        await query.message.edit(
+            "<blockquote>**ᴘʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴛʜᴇ ᴍᴇᴅɪᴀ ᴛʏᴘᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇᴛ:**</blockquote>",
+            reply_markup=keyboard
+        )
 
     elif data == "custom_metadata":
         await query.message.delete()
