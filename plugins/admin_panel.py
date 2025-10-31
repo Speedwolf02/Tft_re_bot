@@ -1,14 +1,12 @@
-from config import Config, Txt, ADMIN
+from config import *
 from helper.database import TFTBOTS
-from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid
 import os, sys, time, asyncio, logging, datetime, traceback
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-ADMIN_USER_ID = ADMIN
 
 # Flag to indicate if the bot is restarting
 is_restarting = False
