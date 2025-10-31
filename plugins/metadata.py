@@ -138,8 +138,4 @@ async def query_metadata(bot: Client, query: CallbackQuery):
             )
         return  # don't proceed further after custom_metadata
 
-    # Edit the existing message if NOT custom_metadata
-    await query.message.edit(
-        f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
-        reply_markup=generate_keyboard(bool_metadata, bool_queue),
-    )
+    
