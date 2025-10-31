@@ -16,7 +16,7 @@ is_restarting = False
 
 # Add an admin command
 @Client.on_message(filters.command("add_admin") & filters.user(Config.OWNER))
-async def add_admin(client, message):
+async def add_admin(bot: Client, message: Message):
     if len(message.command) != 2:
         await message.reply_text("Usage: /add_admin <user_id>")
         return
@@ -30,7 +30,7 @@ async def add_admin(client, message):
 
 # Remove an admin command
 @Client.on_message(filters.command("remove_admin") & filters.user(Config.OWNER))
-async def remove_admin(client, message):
+async def remove_admin(bot: Client, message: Message):
     if len(message.command) != 2:
         await message.reply_text("Usage: /remove_admin <user_id>")
         return
