@@ -11,7 +11,7 @@ TOKEN_VERIFY=False
 API = environ.get("API", "35bb655ec06018f724ea4f3cde2b410b2f34c646") # shortlink api
 URL = environ.get("URL", "adrinolinks.in") # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/+Gt55OVP7VTAyNmNl") # how to open link 
-BOT_USERNAME = environ.get("BOT_USERNAME", "Ggjkkkooo_bot") # bot username without @
+BOT_USERNAME = environ.get("BOT_USERNAME", "Ghjjjoooo_bot") # bot username without @
 VERIFY = environ.get("VERIFY", "True") # set True Or False and make sure spelling is correct and first letter capital.
 USER_LIMIT_TIME = int(os.environ.get("USER_LIMIT_TIME", "1"))#enter time based on hours
 
@@ -32,7 +32,7 @@ class Config(object):
     START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/feb6dd0a1cb8576943c0f.jpg")
     
     FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', "").split(',')
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "0" ))
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002201298270" ))
     DUMB_CHANNEL = os.environ.get("DUMB_CHANNEL", "")
     
     # wes response configuration     
