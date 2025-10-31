@@ -17,15 +17,15 @@ USER_LIMIT_TIME = int(os.environ.get("USER_LIMIT_TIME", "1"))#enter time based o
 
 class Config(object):
     # pyro client config
-    API_ID    = os.environ.get("API_ID", "")
-    API_HASH  = os.environ.get("API_HASH", "")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
+    API_ID    = os.environ.get("API_ID", " 24435985")
+    API_HASH  = os.environ.get("API_HASH", "0fec896446625478537e43906a4829f8")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7758738938:AAGwhb8vXtHw9INX8SzCr82PKYtjQJHE-3c") 
 
     # database config
     DB_NAME = os.environ.get("DB_NAME","Speedwolf1")     
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://Speedwolf1:speedwolf24689@cluster0.rgfywsf.mongodb.net/")
     PORT = os.environ.get("PORT", "8050")
-    OWNER = os.environ.get("OWNER", "")
+    OWNER = os.environ.get("OWNER", "6299192020")
  
     # other configs
     BOT_UPTIME  = time.time()
