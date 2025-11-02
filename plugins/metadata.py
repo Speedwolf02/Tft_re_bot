@@ -124,6 +124,11 @@ async def query_metadata(bot: Client, query: CallbackQuery):
                 timeout=60,
                 disable_web_page_preview=True,
             )
+        except:
+            ag_meta = InlineKeyboardMarkup([
+                        [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="custom_metadata")]])
+            
+            await message.reply_text("Metadata Setting Time limit is over..😔",reply_markup=ag_meta)
         
             return
         
