@@ -51,8 +51,8 @@ async def handle_document(client: Client, message: Message):
              reply_markup=InlineKeyboardMarkup([
                  [InlineKeyboardButton('🔗 Verify Now ☘️', url=verification_url)]
               ])
-          )
-        return
+            )
+            return
     
     _bool_queue = await TFTBOTS.get_queue(user_id)
     if _bool_queue:
@@ -116,5 +116,11 @@ async def clear_one_queue(client: Client, message: Message):
             await message.reply_text(f"⚠️ No file at position {index}. Your queue has {len(queue[user_id]['messages'])} files.")
     else:
         await message.reply_text("⚠️ Your queue is already empty.")
+
+
+
+
+
+
 
 
