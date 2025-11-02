@@ -32,7 +32,7 @@ async def handle_document(client: Client, message: Message):
     global queue_size
     user_id = message.from_user.id
     if PRIVATE :
-        if user_id not in (Config.OWNER or ADMIN):
+        if user_id not in ([Config.OWNER] + ADMIN):
             await message.reply_text("😔Oops .. Only Authorised Users can Use me ✅")
             return
     
@@ -116,4 +116,5 @@ async def clear_one_queue(client: Client, message: Message):
             await message.reply_text(f"⚠️ No file at position {index}. Your queue has {len(queue[user_id]['messages'])} files.")
     else:
         await message.reply_text("⚠️ Your queue is already empty.")
+
 
