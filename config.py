@@ -25,7 +25,7 @@ class Config(object):
     DB_NAME = os.environ.get("DB_NAME","Speedwolf1")     
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://Speedwolf1:speedwolf24689@cluster0.rgfywsf.mongodb.net/")
     PORT = os.environ.get("PORT", "8050")
-    OWNER = os.environ.get("OWNER", "6299192020")
+    OWNER = int(os.environ.get("OWNER", "6299192020"))
  
     # other configs
     BOT_UPTIME  = time.time()
