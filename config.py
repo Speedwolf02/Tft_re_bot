@@ -7,12 +7,12 @@ id_pattern = re.compile(r'^.\d+$')
 # Fetch initial admin list
 ADMIN = [6299192020]  # TemporLoad admins when the bot starts
 
-TOKEN_VERIFY=False
+TOKEN_VERIFY=True
 API = environ.get("API", "35bb655ec06018f724ea4f3cde2b410b2f34c646") # shortlink api
 URL = environ.get("URL", "adrinolinks.in") # shortlink domain without https://
 VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/+Gt55OVP7VTAyNmNl") # how to open link 
 BOT_USERNAME = environ.get("BOT_USERNAME", "Ghjjjoooo_bot") # bot username without @
-VERIFY = environ.get("VERIFY", "False") # set True Or False and make sure spelling is correct and first letter capital.
+VERIFY = environ.get("VERIFY", "True") # set True Or False and make sure spelling is correct and first letter capital.
 USER_LIMIT_TIME = int(os.environ.get("USER_LIMIT_TIME", "1"))#enter time based on hours
 
 class Config(object):
@@ -26,7 +26,7 @@ class Config(object):
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://Speedwolf1:speedwolf24689@cluster0.rgfywsf.mongodb.net/")
     PORT = os.environ.get("PORT", "8050")
     OWNER = int(os.environ.get("OWNER", "6299192020"))
-    PRIVATE_USE = "True" #If Bot is private use set True otherwise False
+    PRIVATE_USE = "False" #If Bot is private use set True otherwise False
  
     # other configs
     BOT_UPTIME  = time.time()
