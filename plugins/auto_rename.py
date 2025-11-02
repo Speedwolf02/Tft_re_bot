@@ -36,7 +36,7 @@ async def handle_media_selection(bot: Client, query: CallbackQuery):
     # Save the preferred media type to the database
     await TFTBOTS.set_media_preference(user_id, media_type)
     back = InlineKeyboardMarkup([
-        [InlineKeyboardButton("⬅️ Back", callback_data="settings_pg")]])
+        [InlineKeyboardButton("⬅️ Back", callback_data="setting_pg")]])
     
     # Acknowledge the callback and reply with confirmation
     await query.answer(f"**Media Preference Set To :** {media_type} ✅")
