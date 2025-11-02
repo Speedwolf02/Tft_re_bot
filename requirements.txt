@@ -1,5 +1,5 @@
 pyrofork 
-git+https://github.com/mayurichan/pyromod.git@pyrofork 
+https://github.com/Mayuri-Chan/pyromod/archive/refs/heads/pyrofork.zip 
 TgCrypto
 motor
 dnspython
@@ -8,7 +8,6 @@ Pillow
 aiohttp
 pytz
 psutil
-pyromod
 ffmpeg-python
 humanize
 shortzy
