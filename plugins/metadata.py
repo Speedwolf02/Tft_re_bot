@@ -6,7 +6,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
 )
 from helper.database import TFTBOTS
-from pyrofork.exceptions import ListenerTimeout
 from config import Txt, Config
 
 
@@ -125,14 +124,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
                 timeout=60,
                 disable_web_page_preview=True,
             )
-        except ListenerTimeout:
-            ag_meta = InlineKeyboardMarkup([
-                        [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="custom_metadata")]])
-            await bot.send_message(
-                chat_id=query.from_user.id,
-                text="⚠️ Error!!\n\n**Request timed out.**\nReset Metadata by clicking above Button 👇 ",
-                reply_markup=ag_meta
-            )
+        
             return
         
         try:
