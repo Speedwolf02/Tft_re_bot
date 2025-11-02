@@ -26,6 +26,7 @@ class Config(object):
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://Speedwolf1:speedwolf24689@cluster0.rgfywsf.mongodb.net/")
     PORT = os.environ.get("PORT", "8050")
     OWNER = int(os.environ.get("OWNER", "6299192020"))
+    PRIVATE_USE = "False" #If Bot is private use set True otherwise False
  
     # other configs
     BOT_UPTIME  = time.time()
