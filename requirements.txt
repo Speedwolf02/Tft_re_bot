@@ -1,4 +1,5 @@
 pyrofork 
+git+https://github.com/Mayuri-Chan/pyromod@pyrofork
 TgCrypto
 motor
 dnspython
