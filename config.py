@@ -31,7 +31,7 @@ class Config(object):
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/feb6dd0a1cb8576943c0f.jpg")
     
-    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', "0").split(',')
+    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', "anime_warrior_tamil").split(',')
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002201298270" ))
     DUMB_CHANNEL = os.environ.get("DUMB_CHANNEL", "")
     
