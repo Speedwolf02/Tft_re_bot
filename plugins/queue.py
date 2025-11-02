@@ -39,7 +39,7 @@ async def handle_document(client: Client, message: Message):
     if TOKEN_VERIFY:
         is_verified = await check_verification(client, message.from_user.id)
         if not is_verified:
-            message.delete()
+            await message.delete()
             if user_id in pending_tokens:
                 verification_url = pending_tokens[user_id]
             else:
@@ -116,6 +116,7 @@ async def clear_one_queue(client: Client, message: Message):
             await message.reply_text(f"⚠️ No file at position {index}. Your queue has {len(queue[user_id]['messages'])} files.")
     else:
         await message.reply_text("⚠️ Your queue is already empty.")
+
 
 
 
