@@ -1,5 +1,4 @@
-pyrofork 
-https://github.com/Mayuri-Chan/pyromod/archive/refs/heads/pyrofork.zip 
+pyrofork  
 TgCrypto
 motor
 dnspython
