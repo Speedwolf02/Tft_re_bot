@@ -26,21 +26,7 @@ async def auto_rename_command(client, message):
                              f"**ʏᴏᴜʀ ꜱᴀᴠᴇᴅ ᴛᴇᴍᴘʟᴀᴛᴇ:** `{format_template}`\n\n"
                              "ʀᴇᴍᴇᴍʙᴇʀ, ᴍᴀʏʙᴇ ɪ'ʟʟ ʀᴇɴᴀᴍᴇ ʏᴏᴜʀ ꜰɪʟᴇꜱ ꜱʟᴏᴡ ʙᴜᴛ ɪ ꜱᴜʀᴇʟʏ ᴍᴀᴋᴇ ᴛʜᴇᴍ ᴘᴇʀꜰᴇᴄᴛ!✨")
 
-@Client.on_message(filters.private & filters.command("setmedia"))
-async def set_media_command(client, message):
-    user_id = message.from_user.id
-    
-    # Define inline keyboard buttons
-    keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("ᴅᴏᴄᴜᴍᴇɴᴛ", callback_data="setmedia_document")],
-        [InlineKeyboardButton("ᴠɪᴅᴇᴏ", callback_data="setmedia_video")]
-    ])
-    
-    # Send a message with inline buttons
-    await message.reply_text(
-        "**ᴘʟᴇᴀsᴇ sᴇʟᴇᴄᴛ ᴛʜᴇ ᴍᴇᴅɪᴀ ᴛʏᴘᴇ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ sᴇᴛ:**",
-        reply_markup=keyboard
-    )
+
 
 @Client.on_callback_query(filters.regex("^setmedia_"))
 async def handle_media_selection(bot: Client, query: CallbackQuery):
@@ -49,7 +35,9 @@ async def handle_media_selection(bot: Client, query: CallbackQuery):
     
     # Save the preferred media type to the database
     await TFTBOTS.set_media_preference(user_id, media_type)
+    back = InlineKeyboardMarkup([
+        [InlineKeyboardButton("⬅️ Back", callback_data="settings_pg")]])
     
     # Acknowledge the callback and reply with confirmation
     await query.answer(f"**Media Preference Set To :** {media_type} ✅")
-    await query.message.edit_text(f"**Media Preference Set To :** {media_type} ✅")
+    await query.message.edit_text(f"**Media Preference Set To :** {media_type} ✅", replymarkup=back)
