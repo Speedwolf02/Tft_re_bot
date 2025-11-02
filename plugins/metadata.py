@@ -10,6 +10,8 @@ from plugins.auto_rename import set_media_command
 from pyromod.exceptions import ListenerTimeout
 from config import Txt, Config
 
+
+
 def generate_keyboard(bool_metadata, bool_queue):
     return InlineKeyboardMarkup([
         [
@@ -44,15 +46,16 @@ def generate_keyboard(bool_metadata, bool_queue):
 @Client.on_message(filters.private & filters.command("settings"))
 async def handle_metadata(bot: Client, message: Message):
     ms = await message.reply_text("**Wait A Second...**", reply_to_message_id=message.id)
-
-    bool_metadata = await TFTBOTS.get_metadata(message.from_user.id)
-    bool_queue = await TFTBOTS.get_queue(message.from_user.id)
-    user_metadata = await TFTBOTS.get_metadata_code(message.from_user.id)
+    user_id = message.from_user.id
+    bool_metadata = await TFTBOTS.get_metadata(user_id)
+    bool_queue = await TFTBOTS.get_queue(user_id)
+    user_metadata = await TFTBOTS.get_metadata_code(user_id)
+    media_type = await TFTBOTS.get_media_preference(user_id)
 
     await ms.delete()
 
     await message.reply_text(
-        f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type: \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
+        f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type: {media_type} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
         reply_markup=generate_keyboard(bool_metadata, bool_queue),
     )
 
@@ -60,11 +63,12 @@ async def handle_metadata(bot: Client, message: Message):
 @Client.on_callback_query(filters.regex(".*?(custom_metadata|metadata|queue|ftype|setting_pg).*?"))
 async def query_metadata(bot: Client, query: CallbackQuery):
     data = query.data
-
+    user_id = query.from_user.id
     # Always fetch the latest states
-    bool_metadata = await TFTBOTS.get_metadata(query.from_user.id)
-    bool_queue = await TFTBOTS.get_queue(query.from_user.id)
-    user_metadata = await TFTBOTS.get_metadata_code(query.from_user.id)
+    bool_metadata = await TFTBOTS.get_metadata(user_id)
+    bool_queue = await TFTBOTS.get_queue(user_id)
+    user_metadata = await TFTBOTS.get_metadata_code(user_id)
+    media_type = await TFTBOTS.get_media_preference(user_id)
 
     if data.startswith("metadata_"):
         _bool = data.split("_")[1] == '1'
@@ -77,7 +81,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
         bool_queue = not _bool  # update after setting
         
     elif data == "setting_pg":
-        await query.message.edit(f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type: \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
+        await query.message.edit(f"<b>Metadata Feature : {'✅' if bool_metadata else '❌'} \n\n Queue Feature : {'✅' if bool_queue else '❌'} \n\n Upload type: {media_type} \n\n ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴍᴇᴛᴀᴅᴀᴛᴀ:</b>\n\n➜ `{user_metadata}`",
         reply_markup=generate_keyboard(bool_metadata, bool_queue),
     )
     elif data == "ftype":
@@ -94,6 +98,8 @@ async def query_metadata(bot: Client, query: CallbackQuery):
         )
 
     elif data == "custom_metadata":
+        back = InlineKeyboardMarkup([
+                [InlineKeyboardButton("⬅️ Back", callback_data="settings_pg")]])
         await query.message.delete()
         try:
             user_metadata = await TFTBOTS.get_metadata_code(query.from_user.id)
@@ -116,11 +122,11 @@ async def query_metadata(bot: Client, query: CallbackQuery):
             )
         except ListenerTimeout:
             ag_meta = InlineKeyboardMarkup([
-                [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="setmedia_document")]])
+                        [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="setmedia_document")]])
             await bot.send_message(
                 chat_id=query.from_user.id,
                 text="⚠️ Error!!\n\n**Request timed out.**\nReset Metadata by clicking above Button 👇 ",
-                reply_markup=ag_meta,
+                reply_markup=ag_meta
             )
             return
         
@@ -133,11 +139,12 @@ async def query_metadata(bot: Client, query: CallbackQuery):
             await TFTBOTS.set_metadata_code(
                 query.from_user.id, metadata_code=metadata.text
             )
-            await ms.edit("**Your Metadata Code Set Successfully ✅**")
+            await ms.edit("**Your Metadata Code Set Successfully ✅**", reply_markup=back)
         except Exception as e:
             await bot.send_message(
                 chat_id=query.from_user.id,
-                text=f"**Error Occurred:** {str(e)}"
+                text=f"**Error Occurred:** {str(e)}",
+                reply_markup=back
             )
         return  # don't proceed further after custom_metadata
 
