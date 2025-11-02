@@ -115,9 +115,12 @@ async def query_metadata(bot: Client, query: CallbackQuery):
                 disable_web_page_preview=True,
             )
         except ListenerTimeout:
+            ag_meta = InlineKeyboardMarkup([
+                [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="setmedia_document")]])
             await bot.send_message(
                 chat_id=query.from_user.id,
-                text="⚠️ Error!!\n\n**Request timed out.**\nRestart by using /metadata",
+                text="⚠️ Error!!\n\n**Request timed out.**\nReset Metadata by clicking above Button 👇 ",
+                reply_markup=ag_meta,
             )
             return
         
