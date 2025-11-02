@@ -57,7 +57,7 @@ async def handle_metadata(bot: Client, message: Message):
     )
 
 
-@Client.on_callback_query(filters.regex(".*?(custom_metadata|metadata|queue|ftype).*?"))
+@Client.on_callback_query(filters.regex(".*?(custom_metadata|metadata|queue|ftype|setting_pg).*?"))
 async def query_metadata(bot: Client, query: CallbackQuery):
     data = query.data
 
