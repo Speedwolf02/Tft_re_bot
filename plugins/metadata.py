@@ -98,7 +98,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
 
     elif data == "custom_metadata":
         back = InlineKeyboardMarkup([
-                [InlineKeyboardButton("⬅️ Back", callback_data="settings_pg")]])
+                [InlineKeyboardButton("⬅️ Back", callback_data="setting_pg")]])
         await query.message.delete()
         try:
             user_metadata = await TFTBOTS.get_metadata_code(query.from_user.id)
@@ -121,7 +121,7 @@ async def query_metadata(bot: Client, query: CallbackQuery):
             )
         except ListenerTimeout:
             ag_meta = InlineKeyboardMarkup([
-                        [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="setmedia_document")]])
+                        [InlineKeyboardButton("Set Metadata Again 🔄", callback_data="custom_metadata")]])
             await bot.send_message(
                 chat_id=query.from_user.id,
                 text="⚠️ Error!!\n\n**Request timed out.**\nReset Metadata by clicking above Button 👇 ",
