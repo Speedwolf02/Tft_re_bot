@@ -56,7 +56,7 @@ async def check_verification(bot, userid):
     tz = pytz.timezone('Asia/Kolkata')
     now = datetime.now(tz)  # Get current time in IST
 
-    if user.id in (ADMIN or Config.OWNER):
+    if user.id in (ADMIN + [Config.OWNER]):
         return True  # Admins are always verified
 
     if user.id in VERIFIED:
