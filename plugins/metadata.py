@@ -6,7 +6,6 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
 )
 from helper.database import TFTBOTS
-from plugins.auto_rename import set_media_command
 from pyromod.exceptions import ListenerTimeout
 from config import Txt, Config
 
