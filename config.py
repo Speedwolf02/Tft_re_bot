@@ -26,7 +26,7 @@ class Config(object):
     DB_URL  = os.environ.get("DB_URL","mongodb+srv://Speedwolf1:speedwolf24689@cluster0.rgfywsf.mongodb.net/")
     PORT = os.environ.get("PORT", "8050")
     OWNER = int(os.environ.get("OWNER", "6299192020"))
-    PRIVATE_USE = "False" #If Bot is private use set True otherwise False
+    PRIVATE_USE = "True" #If Bot is private use set True otherwise False
  
     # other configs
     BOT_UPTIME  = time.time()
@@ -55,19 +55,20 @@ class Txt(object):
 
 <b>Bot Is Made By :</b> @Tech_Freak_Tamil"""
 
-    ABOUT_TXT = f"""<b>😈 My Name :</b> <a href='https://t.me/Tech_Freak_Tamil'>Video editor bot ⚡</a>
+    ABOUT_TXT = f"""<b>😈 My Name :</b> <a href='https://t.me/Tech_Freak_Tamil'>Auto Renamer bot ⚡</a>
 <b>📝 Language :</b> <a href='https://python.org'>Python 3</a>
 <b>📚 Library :</b> <a href='https://pyrogram.org'>Pyrogram 2.0</a>
 <b>🚀 Server :</b> <a href='https://heroku.com'>Heroku</a>
 <b>📢 Channel :</b> <a href='https://t.me/Tech_Freak_Tamil'>TFT BOTS</a>
-<b>🛡️ Disscussion :</b> <a href='https://t.me/+NITVxLchQhYzNGZl'>TFT Developer</a>
+<b>🛡️ Disscussion :</b> <a href='https://t.me/+ov2l_dY_8jA3MGVl'>TFT Discussion</a>
     
-<b>😈 Bot Made By :</b> @Tech_freak_Bot_Developer"""
+<b>😈 Bot Made By :</b> https://t.me/+ov2l_dY_8jA3MGVl"""
 
     HELP_TXT = """
 🌌 <b><u>How To Set Thumbnail</u></b>
   
 ➪ /start - Start The Bot And Send Any Photo To Automatically Set Thumbnail.
+➪ /settings - Set Queue, Upload type and metadata 
 ➪ /del_thumb - Use This Command To Delete Your Old Thumbnail.
 ➪ /view_thumb - Use This Command To View Your Current Thumbnail.
 
